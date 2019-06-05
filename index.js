@@ -1,24 +1,24 @@
 require('dotenv').config()
 
-const connectToDB = require('./lib/db')
+const connectToDB = require('./db')
 const debug = require('debug')('ds-news')
 const express = require('express')
 const http = require('http')
-const nunjucks = require('nunjucks')
+const path = require('path')
 
 const app = express()
 const port = process.env.PORT || 4000
 
-nunjucks.configure('views', {
-  autoescape: true,
-  express: app
-})
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'pug')
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', async (req, res, next) => {
   try {
     const db = await connectToDB()
-    const posts = await db.collection('posts').find({}, { limit: 10 }).toArray()
-    res.render('index.njk', { title: 'Datasketch News', posts })
+    const posts = await db.collection('posts').find({}).sort({ publishedDate: -1 }).limit(20).toArray()
+    res.render('index', { title: 'Datasketch News', posts })
   } catch (error) {
     debug(error)
     return next(error)
