@@ -1,0 +1,27 @@
+extends partials/base
+
+block css
+  link(rel="stylesheet", href="/styles/home.css")
+
+block main
+  .main-content
+    .row
+      .col-sm-7.col-xs-12
+        section.featured-post
+          .post-image-wrapper
+            img.post-image(src=featured.image.secure_url, alt=featured.title)
+          small.post-date #{moment(featured.publishedDate).format('MMMM DD, YYYY')}
+          h2.post-title.featured-title
+            a(href=`/p/${featured.slug}`) #{featured.altTitle ? featured.altTitle : featured.title}
+          .post-brief.featured-brief !{featured.content.brief}
+        section.recent-post
+          each post in posts
+            article.post.row
+              .col-md-3.col-xs-12
+                img.post-image(src=post.image.secure_url, alt=post.title)
+              .col-md-9.col-xs-12
+                .post-meta
+                  small.post-date #{moment(post.publishedDate).format('MMMM DD, YYYY')}
+                h2.post-title
+                  a(href=`/p/${post.slug}`) #{post.altTitle ? post.altTitle : post.title}
+                .post-brief !{post.content.brief}

@@ -4,8 +4,11 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    block head
+    link(href="https://fonts.googleapis.com/css?family=Lora|Ubuntu:300,400&display=swap" rel="stylesheet")
     link(rel="stylesheet", href="/styles/base.css")
     link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css", type="text/css")
+    block css
     title= title || 'Datasketch News'
   body
     .wrapper
@@ -15,6 +18,6 @@ html(lang="en")
         nav.navbar
           ul.navbar-menu
             each section in menu
-              li.navbar-item: a(href=section.href.es)= section.label.es
+              li.navbar-item: a(href=section.href[getLocale()])= section.label[getLocale()]
       main.container
         block main

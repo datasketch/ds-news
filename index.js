@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.get('/', async (req, res, next) => {
   try {
     const posts = await getPosts()
-    res.render('index', { posts: posts.slice(1), featured: posts[0] })
+    res.render('home', { posts: posts.slice(1), featured: posts[0] })
   } catch (error) {
     debug(error)
     return next(error)
