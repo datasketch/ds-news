@@ -6,7 +6,7 @@ block main
       each post in posts
         .post
           h3= post.title
-          small= post.publishedDate
+          small= moment(post.publishedDate).format('MMMM DD, YYYY')
           img(src=post.image.secure_url, alt=post.title)
           p!= post.content.brief
           a(href=`/p/${post.slug}`) Leer más

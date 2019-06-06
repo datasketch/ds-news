@@ -14,17 +14,7 @@ html(lang="en")
           img(src="/images/logo.svg", alt="")
         nav.navbar
           ul.navbar-menu
-            li.navbar-item
-              a(href="") Derechos Humanos
-            li.navbar-item
-              a(href="") Género
-            li.navbar-item
-              a(href="") Medio ambiente
-            li.navbar-item
-              a(href="") Arte y cultura
-            li.navbar-item
-              a(href="") Tecnología y sociedad
-            li.navbar-item
-              a(href="") Anticorrupción
+            each section in menu
+              li.navbar-item: a(href=section.href.es)= section.label.es
       main.container
         block main
