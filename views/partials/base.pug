@@ -6,7 +6,7 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     link(rel="stylesheet", href="/styles/base.css")
     link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css", type="text/css")
-    title= title
+    title= title || 'Datasketch News'
   body
     .wrapper
       header.container
@@ -26,4 +26,5 @@ html(lang="en")
               a(href="") Tecnología y sociedad
             li.navbar-item
               a(href="") Anticorrupción
-      block main
+      main.container
+        block main

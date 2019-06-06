@@ -1,7 +1,12 @@
 extends partials/base
 
 block main
-  main.container
-    .row
-      .col-sm-8.col-xs-12
-        p Hola
+  .row
+    .col-sm-8.col-xs-12
+      each post in posts
+        .post
+          h3= post.title
+          small= post.publishedDate
+          img(src=post.image.secure_url, alt=post.title)
+          p!= post.content.brief
+          a(href=`/p/${post.slug}`) Leer más
