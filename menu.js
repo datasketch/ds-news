@@ -1,4 +1,9 @@
-module.exports = [
+const tags = {
+  es: ['derechos-humanos', 'genero', 'tecnologia-y-sociedad', 'medio-ambiente', 'arte-y-cultura', 'anticorrupcion'],
+  en: ['human-rights', 'gender', 'technology-and-society', 'environment', 'art-and-culture', 'anticorruption']
+}
+
+const menu = [
   {
     label: { es: 'Derechos Humanos', en: 'Human Rights' },
     href: { es: 'derechos-humanos', en: 'human-rights' },
@@ -30,3 +35,5 @@ module.exports = [
     key: 'anticorruption'
   }
 ]
+
+module.exports = { tags, menu }

@@ -4,11 +4,11 @@ const debug = require('debug')('ds-news')
 const express = require('express')
 const http = require('http')
 const i18n = require('i18n')
-const menu = require('./menu')
+const { tags, menu } = require('./menu')
 const moment = require('moment')
 const morgan = require('morgan')
 const path = require('path')
-const { getPosts, getPost } = require('./lib/post')
+const { getPosts, getPost, getPostsByTag } = require('./lib/post')
 
 const app = express()
 const port = process.env.PORT || 4000
@@ -50,6 +50,21 @@ app.get('/p/:slug', async (req, res, next) => {
     res.render('post', { post, title: post.title + ' · Datasketch News' })
   } catch (error) {
     debug(error)
+    return next(error)
+  }
+})
+
+app.get('/tags/:tag', async (req, res, next) => {
+  const { tag } = req.params
+  const lang = res.locals.locale
+  if (!tags[lang].includes(tag)) {
+    return next()
+  }
+  try {
+    const search = lang === 'es' ? tag : tags.es[tags.en.indexOf(tag)]
+    const posts = await getPostsByTag(lang, search)
+    res.render('tags', { posts })
+  } catch (error) {
     return next(error)
   }
 })

@@ -1,0 +1,13 @@
+extends partials/base
+
+block main
+  section(class="w-full sm:w-7/12 sm:mx-auto")
+    each post in posts
+      article(class="post flex flex-col sm:flex-row mb-8 -mx-2")
+        div(class="w-full sm:w-3/12 px-2")
+          img.post-image.w-full(src=post.image.secure_url, alt=post.title)
+        div(class="w-full sm:w-9/12 px-2")
+          small.post-date.font-lora.text-xs #{capitalize(moment(post.publishedDate).locale(locale).format('MMMM DD, YYYY'))}
+          h2.post-title.mb-3.text-xl
+            a.text-dark-purple(href=`/p/${post.slug}`) #{post.altTitle ? post.altTitle : post.title}
+          .post-brief !{post.content.brief}
