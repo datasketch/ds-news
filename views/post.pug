@@ -20,14 +20,20 @@ block head
   meta(name='twitter:description' content=post.seoDescription)
   meta(name='twitter:image' content=post.image.secure_url)
 
-block css
-  link(rel="stylesheet", href="/styles/post.css")
-
 block main
-  .row
-    .col-md-8.col-md-offset-2
-      .row
-        .col-md-6.col-xs-12
-          img.post-image(src=post.image.secure_url, alt=post.title)
-        .col-md-6.col-xs-12
-          h2.post-title #{post.title}
+  div(class="w-full sm:w-9/12 mx-auto")
+    .post-header
+      div(class="flex flex-col lg:mx-2 lg:flex-row")
+        div(class="pw-full lg:w-6/12 lg:px-2")
+          img.w-full.object-contain(src=post.image.secure_url, alt=post.title)
+        div(class="mt-4 lg:mt-0 w-full lg:w-6/12 lg:px-2")
+          h3(class="text-dark-purple text-xl mb-2 lg:text-2xl border-b-2 border-dark-purple font-bold") #{post.altTitle ? post.altTitle : post.title}
+          small.font-xs #{capitalize(moment(post.publishedDate).locale(locale).format('MMMM DD, YYYY'))}
+          .post-brief.mt-3.mb-6 !{post.content.brief}
+          if post.authors.length
+            each author in post.authors
+              .flex.flex-row.items-center.mb-1
+                if author.image
+                  img.w-12.h-12.mr-2.rounded-full(src=author.image.secure_url, alt=author.name)
+                small.text-sm #{author.name.first + ' ' + author.name.last}
+  div(class="post-body mt-8 w-full sm:w-7/12 mx-auto") !{post.content.extended}    

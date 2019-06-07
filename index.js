@@ -20,6 +20,7 @@ i18n.configure({
 
 app.locals.menu = menu
 app.locals.moment = moment
+app.locals.capitalize = str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
@@ -45,6 +46,7 @@ app.get('/p/:slug', async (req, res, next) => {
       return next()
     }
     const post = data[0]
+    // res.json({ post })
     res.render('post', { post, title: post.title + ' · Datasketch News' })
   } catch (error) {
     debug(error)

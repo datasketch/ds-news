@@ -1,14 +1,11 @@
 extends partials/base
 
-block css
-  link(rel="stylesheet", href="/styles/home.css")
-
 block main
   div(class="flex flex-col sm:flex-row")
     div(class="w-full sm:w-8/12 lg:w-7/12")
       article.featured-post.border-b.border-gray-400.pb-8.mb-8.text-dark-purple
         img.post-image.w-full.mb-5(src=featured.image.secure_url, alt=featured.title)
-        small.post-date.font-lora.text-xs #{moment(featured.publishedDate).format('MMMM DD, YYYY')}
+        small.post-date.font-lora.text-xs #{capitalize(moment(featured.publishedDate).locale(locale).format('MMMM DD, YYYY'))}
         h2.post-title.mb-5.text-3xl
           a.text-dark-purple(href=`/p/${featured.slug}`) #{featured.altTitle ? featured.altTitle : featured.title}
         .post-brief !{featured.content.brief}
@@ -18,28 +15,8 @@ block main
             div(class="w-full sm:w-3/12 px-2")
               img.post-image.w-full(src=post.image.secure_url, alt=post.title)
             div(class="w-full sm:w-9/12 px-2")
-              small.post-date.font-lora.text-xs #{moment(post.publishedDate).format('MMMM DD, YYYY')}
+              small.post-date.font-lora.text-xs #{capitalize(moment(post.publishedDate).locale(locale).format('MMMM DD, YYYY'))}
               h2.post-title.mb-3.text-xl
                 a.text-dark-purple(href=`/p/${post.slug}`) #{post.altTitle ? post.altTitle : post.title}
               .post-brief !{post.content.brief}
     div(class="w-full sm:w-4/12 lg:w-5/12")
-  //- .row
-  //-   .col-sm-7.col-xs-12
-  //-     section.featured-post
-  //-       .post-image-wrapper
-  //-         img.post-image(src=featured.image.secure_url, alt=featured.title)
-  //-       small.post-date #{moment(featured.publishedDate).format('MMMM DD, YYYY')}
-  //-       h2.post-title.featured-title
-  //-         a(href=`/p/${featured.slug}`) #{featured.altTitle ? featured.altTitle : featured.title}
-  //-       .post-brief.featured-brief !{featured.content.brief}
-  //-     section.recent-post
-  //-       each post in posts
-  //-         article.post.row
-  //-           .col-md-3.col-xs-12
-  //-             img.post-image(src=post.image.secure_url, alt=post.title)
-  //-           .col-md-9.col-xs-12
-  //-             .post-meta
-  //-               small.post-date #{moment(post.publishedDate).format('MMMM DD, YYYY')}
-  //-             h2.post-title
-  //-               a(href=`/p/${post.slug}`) #{post.altTitle ? post.altTitle : post.title}
-  //-             .post-brief !{post.content.brief}

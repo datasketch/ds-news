@@ -17,8 +17,8 @@ html(lang="en")
     .flex-col
       header(class="container mx-auto px-3 lg:px-4")
         div(class="py-4")
-          img(class="w-2/3 sm:w-3/12 mx-auto", src="/images/logo.svg", alt="")
-        nav(class="navbar px-3 sm:px-8 border-t border-b border-gray-300")
+          a(href="/"): img(class="w-2/3 sm:w-3/12 mx-auto", src="/images/logo.svg", alt="")
+        nav(class="navbar px-0 sm:px-8 border-t border-b border-gray-300")
           ul(class="navbar-menu py-2 flex flex-col sm:flex-row justify-between")
             each section in menu
               li.navbar-item.text-xs
