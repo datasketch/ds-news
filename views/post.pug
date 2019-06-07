@@ -32,8 +32,22 @@ block main
           .post-brief.mt-3.mb-6 !{post.content.brief}
           if post.authors.length
             each author in post.authors
+              - var name = author.name.first + ' ' + author.name.last
               .flex.flex-row.items-center.mb-1
                 if author.image
-                  img.w-12.h-12.mr-2.rounded-full(src=author.image.secure_url, alt=author.name)
-                small.text-sm #{author.name.first + ' ' + author.name.last}
-  div(class="post-body mt-8 w-full sm:w-7/12 mx-auto") !{post.content.extended}    
+                  img.w-12.h-12.mr-2.rounded-full(src=author.image.secure_url, alt=name)
+                small.text-sm #{name}
+  div(class="mt-8 w-full sm:w-7/12 mx-auto")
+    .post-body !{post.content.extended}
+    .flex.flex-row.items-center.justify-center.my-8
+      .w-2.h-2.rounded-full.mx-1.bg-magenta
+      .w-2.h-2.rounded-full.mx-1.bg-magenta
+      .w-2.h-2.rounded-full.mx-1.bg-magenta
+    if post.authors.length
+      each author in post.authors
+        - var name = author.name.first + ' ' + author.name.last
+        div(class="flex flex-col mb-8 w-full sm:w-6/12 mx-auto")
+          .flex.flex-row.items-center
+            img.w-12.h-12.rounded-full.mr-3(src=author.image.secure_url, alt=name)
+            small.text-sm #{name}
+          .mt-4.text-sm !{author[`bio${capitalize(locale)}`].md}

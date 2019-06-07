@@ -16,6 +16,10 @@ body {
   border-color: #0e0329;
 }
 
+.bg-magenta {
+  background-color: #b70f7f;
+}
+
 .post-brief p,
 .post-brief p[style],
 .post-brief p > [style] {
