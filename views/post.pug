@@ -1,0 +1,33 @@
+extends partials/base
+
+block head
+  //- Google / Search Engine Tags
+  meta(itemprop='name' content=post.seoTitle)
+  meta(itemprop='description' content=post.seoDescription)
+  meta(itemprop='image' content=post.image.secure_url)
+  //- Facebook Meta Tags
+  meta(
+    property='og:url'
+    content=`https://www.datasketch.co/p/${post.slug}`
+  )
+  meta(property='og:type' content='website')
+  meta(property='og:title' content=post.seoTitle)
+  meta(property='og:description' content=post.seoDescription)
+  meta(property='og:image' content=post.image.secure_url)
+  //- Twitter Meta Tags
+  meta(name='twitter:card' content='summary_large_image')
+  meta(name='twitter:title' content=post.seoTitle)
+  meta(name='twitter:description' content=post.seoDescription)
+  meta(name='twitter:image' content=post.image.secure_url)
+
+block css
+  link(rel="stylesheet", href="/styles/post.css")
+
+block main
+  .row
+    .col-md-8.col-md-offset-2
+      .row
+        .col-md-6.col-xs-12
+          img.post-image(src=post.image.secure_url, alt=post.title)
+        .col-md-6.col-xs-12
+          h2.post-title #{post.title}

@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', async (req, res, next) => {
   try {
-    const posts = await getPosts()
+    const posts = await getPosts(res.locals.locale)
     res.render('home', { posts: posts.slice(1), featured: posts[0] })
   } catch (error) {
     debug(error)
@@ -40,11 +40,12 @@ app.get('/', async (req, res, next) => {
 
 app.get('/p/:slug', async (req, res, next) => {
   try {
-    const post = await getPost(req.params.slug)
-    if (!post.length) {
+    const data = await getPost(req.params.slug)
+    if (!data.length) {
       return next()
     }
-    res.json({ post: post[0] })
+    const post = data[0]
+    res.render('post', { post, title: post.title + ' · Datasketch News' })
   } catch (error) {
     debug(error)
     return next(error)
