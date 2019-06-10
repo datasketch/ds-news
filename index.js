@@ -63,9 +63,23 @@ app.get('/tags/:tag', async (req, res, next) => {
   try {
     const search = lang === 'es' ? tag : tags.es[tags.en.indexOf(tag)]
     const posts = await getPostsByTag(lang, search)
-    res.render('tags', { posts })
+    res.render('tags', { posts, search })
   } catch (error) {
     return next(error)
+  }
+})
+
+app.get('/api/tagged/:tag/:page', async (req, res, next) => {
+  const { tag, page } = req.params
+  const lang = res.locals.locale
+  if (!tags.es.includes(tag)) {
+    return res.json({ posts: [], message: 'Tag not found' })
+  }
+  try {
+    const posts = await getPostsByTag(lang, tag, page)
+    return res.json({ posts })
+  } catch (error) {
+    return res.status(500).json({ posts: [], message: error.message })
   }
 })
 

@@ -22,6 +22,7 @@ html(lang="en")
           ul(class="navbar-menu py-2 flex flex-col sm:flex-row justify-between")
             each section in menu
               li.navbar-item.text-xs
-                a.p-1.text-dark-purple(href=section.href[locale])= section.label[locale]
+                a.p-1.text-dark-purple(href=`/tags/${section.href[locale]}`)= section.label[locale]
       main(class="container mx-auto px-3 lg:px-4 py-10")
         block main
+      block js

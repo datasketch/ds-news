@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "DEBUG=ds-news* node index.js",
-    "dev": "DEBUG=ds-news* nodemon index.js"
+    "dev": "DEBUG=ds-news* nodemon index.js --ignore public/ --ignore views/"
   },
   "author": "David Daza <03dazal@gmail.com>",
   "license": "ISC",
