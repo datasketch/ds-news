@@ -9,6 +9,7 @@ const moment = require('moment')
 const morgan = require('morgan')
 const path = require('path')
 const { getPosts, getPost, getPostsByTag } = require('./lib/post')
+const { getSpecials } = require('./lib/special')
 
 const app = express()
 const port = process.env.PORT || 4000
@@ -74,6 +75,18 @@ app.get('/tags/:tag', async (req, res, next) => {
     return next(error)
   }
 })
+
+app.get('/especiales', handleRoute)
+app.get('/specials', handleRoute)
+
+async function handleRoute (req, res, next) {
+  try {
+    const specials = await getSpecials()
+    res.render('specials', { specials })
+  } catch (error) {
+    return next(error)
+  }
+}
 
 app.get('/api/tagged/:tag/:page', async (req, res, next) => {
   const { tag, page } = req.params

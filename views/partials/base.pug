@@ -23,6 +23,8 @@ html(lang="en")
             each section in menu
               li.navbar-item.text-xs
                 a.p-1.text-dark-purple(href=`/tags/${section.href[locale]}`)= section.label[locale]
+            li.navbar-item.text-xs
+              a.p-1.text-dark-purple(href=`/${locale === 'es' ? 'especiales' : 'specials'}`) #{locale === 'es' ? 'Especiales' : 'Specials'}
       main(class="container mx-auto px-3 lg:px-4 py-10")
         block main
       block js

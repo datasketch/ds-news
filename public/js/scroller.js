@@ -8,7 +8,7 @@ let loaded = 0
 window.addEventListener('load', function (event) {
   const target = document.querySelector('#target')
   const options = {
-    threshold: 1,
+    threshold: 0.5,
     rootMargin: '200px'
   }
   const observer = new IntersectionObserver(handleIntersect, options)

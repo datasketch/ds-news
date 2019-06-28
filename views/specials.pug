@@ -1,0 +1,13 @@
+extends partials/base
+
+block main
+	h1.text-4xl.text-center.mb-8 Especiales
+	div(class="w-full sm:w-9/12 sm:mx-auto lg:w-8/12")
+		each special in specials
+			article(class="post flex flex-col sm:flex-row mb-8 -mx-2")
+				div(class="w-full sm:w-4/12 px-2")
+					img.post-image.w-full(src=special.image.secure_url, alt=special.title)
+				div(class="w-full sm:w-8/12 px-2")
+					h2.post-title.mb-3.text-xl
+						a.text-dark-purple(href=special.link)= special.title
+					.post-brief !{special.description[locale]}
