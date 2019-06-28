@@ -18,6 +18,8 @@ i18n.configure({
   directory: path.join(__dirname, 'locales')
 })
 
+i18n.setLocale('es')
+
 app.locals.menu = menu
 app.locals.moment = moment
 app.locals.capitalize = str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
@@ -28,6 +30,10 @@ app.set('view engine', 'pug')
 app.use(morgan('dev'))
 app.use(i18n.init)
 app.use(express.static(path.join(__dirname, 'public')))
+app.use((req, res, next) => {
+  req.setLocale('es')
+  next()
+})
 
 app.get('/', async (req, res, next) => {
   try {
