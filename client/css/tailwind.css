@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.lnum {
+  -webkit-font-feature-settings: "lnum"; 
+  -moz-font-feature-settings: "lnum"; 
+  font-feature-settings: "lnum";
+}
+
+.ribbon {  
+  clip-path: polygon(0 0, 0 1px, 7.5% 10px, 0 19px, 100% 20px, 100% 19px, 92.5% 10px, 100% 1px, 0 0);
+  display: inline-block;
+  font-weight: 800;
+  height: 20px;
+  letter-spacing: .1em;
+  line-height: 20px;
+  padding: 0px 15px;
+  position: relative;
+  z-index: 1;
+}
+
+.ribbon:before {
+  content: "";
+  left: 0;
+  position: absolute;
+  top: 1px;
+  z-index: -1;
+}
+
+.ribbon:after {
+  content: "";
+  right: 0;
+  position: absolute;
+  top: 1px;
+  z-index: -1;
+}
+
+.ribbon-magenta {
+  color: #ffffff;
+  background-color: #b70f7f;
+}
+
+.ribbon-white {
+  background-color: #ffffff;
+}

@@ -4,12 +4,12 @@ const debug = require('debug')('ds-news')
 const express = require('express')
 const http = require('http')
 const i18n = require('i18n')
-const { tags, menu } = require('./menu')
 const moment = require('moment')
 const morgan = require('morgan')
 const path = require('path')
 const { getPosts, getPost, getPostsByTag } = require('./lib/post')
 const { getSpecials } = require('./lib/special')
+const { tags, menu } = require('./menu')
 
 const app = express()
 const port = process.env.PORT || 4000
@@ -33,13 +33,15 @@ app.use(i18n.init)
 app.use(express.static(path.join(__dirname, 'public')))
 app.use((req, res, next) => {
   req.setLocale('es')
+  app.locals.moment.locale(req.getLocale())
   next()
 })
 
 app.get('/', async (req, res, next) => {
   try {
     const posts = await getPosts(res.locals.locale)
-    res.render('home', { posts: posts.slice(1), featured: posts[0] })
+    const specials = await getSpecials()
+    res.render('home', { posts: posts.slice(1), highlighted: posts[0], specials: specials.slice(0, 2) })
   } catch (error) {
     debug(error)
     return next(error)

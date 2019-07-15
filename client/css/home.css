@@ -1,0 +1,12 @@
+.highlighted-brief p,
+.highlighted-brief p[style],
+.highlighted-brief p > [style],
+.highlighted-brief p[style] > [style],
+.special-brief p,
+.special-brief p[style],
+.special-brief p > [style],
+.special-brief p[style] > [style] {
+  font-family: 'PT Serif', serif !important;
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+}

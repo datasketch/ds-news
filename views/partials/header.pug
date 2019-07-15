@@ -1,0 +1,16 @@
+header(class="container mx-auto px-4")
+	.flex.items-center.pt-4.pb-10
+		p(class="w-1/3 text-revolver text-xs font-extrabold tracking-wider uppercase lnum") #{moment().format('dddd, MMMM DD [de] YYYY')}
+		div(class="w-1/3")
+			a(href="/"): img.h-10.mx-auto(src="/images/logo.svg", alt="Datasketch")
+		div(class="w-1/3 text-revolver flex justify-end text-lg")
+			a(class="hover:text-magenta mr-4", href="https://twitter.com/datasketchnews", rel="noopener noreferrer", target="_blank"): i.fa.fa-twitter
+			a(class="hover:text-magenta mr-4", href="https://es-la.facebook.com/datasketch/", rel="noopener noreferrer", target="_blank"): i.fa.fa-facebook
+			a(class="hover:text-magenta", href="https://www.instagram.com/datasketch/", rel="noopener noreferrer", target="_blank"): i.fa.fa-instagram
+	nav
+		ul(class="flex justify-between text-revolver text-xs tracking-widest")
+			each section in menu
+				li(class="hover:text-magenta")
+					a.uppercase(href=`/tags/${section.href[locale]}`)= section.label[locale]
+			li(class="hover:text-magenta")
+				a.uppercase(href=`/${locale === 'es' ? 'especiales' : 'specials'}`) #{locale === 'es' ? 'Especiales' : 'Specials'}

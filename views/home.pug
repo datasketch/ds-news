@@ -1,22 +1,26 @@
 extends partials/base
+include mixins/ribbon
+
+block css
+  link(rel="stylesheet", href="/styles/home.css")
 
 block main
-  div(class="flex flex-col sm:flex-row")
-    div(class="w-full sm:w-8/12 lg:w-7/12")
-      article.featured-post.border-b.border-gray-400.pb-8.mb-8.text-dark-purple
-        img.post-image.w-full.mb-5(src=featured.image.secure_url, alt=featured.title)
-        small.post-date.font-lora.text-xs #{capitalize(moment(featured.publishedDate).locale(locale).format('MMMM DD, YYYY'))}
-        h2.post-title.mb-5.text-3xl
-          a.text-dark-purple(href=`/p/${featured.slug}`) #{featured.altTitle ? featured.altTitle : featured.title}
-        .post-brief !{featured.content.brief}
-      section.recent-post
-        each post in posts
-          article(class="post flex flex-col sm:flex-row mb-8 -mx-2")
-            div(class="w-full sm:w-3/12 px-2")
-              img.post-image.w-full(src=post.image.secure_url, alt=post.title)
-            div(class="w-full sm:w-9/12 px-2")
-              small.post-date.font-lora.text-xs #{capitalize(moment(post.publishedDate).locale(locale).format('MMMM DD, YYYY'))}
-              h2.post-title.mb-3.text-xl
-                a.text-dark-purple(href=`/p/${post.slug}`) #{post.altTitle ? post.altTitle : post.title}
-              .post-brief !{post.content.brief}
-    div(class="w-full sm:w-4/12 lg:w-5/12")
+  div(class="w-3/4 mx-auto")
+    div(class="flex -mx-8 mb-16")
+      div(class="w-7/12 px-8")
+        img(src=highlighted.image.secure_url, alt=highlighted.title)
+      div(class="w-5/12 self-end px-8")
+        +ribbon('Destacado', 'magenta')
+        p.text-sm.mt-2 #{capitalize(moment(highlighted.publishedDate).format('MMMM DD, YYYY'))}
+        h1(class="font-playfair text-4xl font-bold mb-4 hover:text-magenta")
+          a(href=`/p/${highlighted.slug}`) #{highlighted.altTitle ? highlighted.altTitle : highlighted.title}
+        .highlighted-brief !{highlighted.content.brief}
+    div(class="flex -mx-8 mb-16 h-72")
+      each special, index in specials
+        div(class=`${index ? 'w-5/12' : 'w-7/12'} px-8`)
+          div(class="h-full bg-center bg-no-repeat bg-cover relative", style=`background-image: url(${special.image.secure_url}); background-origin: content-box;`)
+            .absolute.inset-0.py-4.px-6.flex.flex-col.justify-center.items-start(style="background-color: rgba(0,0,0,.75)")
+              +ribbon('especial', 'white')
+              h1(class="font-playfair font-bold text-4xl my-2 text-white hover:text-magenta")
+                a(href=special.link, target="_blank", rel="noopener noreferrer") #{special.title}
+              .special-brief.text-white !{special.description[locale]}

@@ -5,26 +5,17 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     block head
-    link(href="https://fonts.googleapis.com/css?family=Lora|Ubuntu:300,400&display=swap" rel="stylesheet")
-    link(href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css", rel="stylesheet")
-    link(rel="stylesheet", href="/styles/base.css")
+    link(href="https://fonts.googleapis.com/css?family=PT+Serif|Playfair+Display:700|Raleway:200,400,800&display=swap", rel="stylesheet")
+    link(rel="stylesheet", href="/styles/tailwind.css")
+    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
     block css
     if title
       title #{`${title} · Datasketch News`}
     else
       title Datasketch News
-  body
+  body.font-raleway
     .flex-col
-      header(class="container mx-auto px-3 lg:px-4")
-        div(class="py-4")
-          a(href="/"): img(class="w-2/3 sm:w-3/12 mx-auto", src="/images/logo.svg", alt="")
-        nav(class="navbar px-0 sm:px-8 border-t border-b border-gray-300")
-          ul(class="navbar-menu py-2 flex flex-col sm:flex-row justify-between")
-            each section in menu
-              li.navbar-item.text-xs
-                a.p-1.text-dark-purple(href=`/tags/${section.href[locale]}`)= section.label[locale]
-            li.navbar-item.text-xs
-              a.p-1.text-dark-purple(href=`/${locale === 'es' ? 'especiales' : 'specials'}`) #{locale === 'es' ? 'Especiales' : 'Specials'}
-      main(class="container mx-auto px-3 lg:px-4 py-10")
+      include ./header
+      main(class="container mx-auto px-4 py-20")
         block main
       block js
