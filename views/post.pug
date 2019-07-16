@@ -53,8 +53,8 @@ block main
 					.author-info
 						p(class="text-base text-revolver uppercase tracking-widest font-extrabold mb-2")= name
 						div(class="italic text-xs text-revolver") !{author[`bio${capitalize(locale)}`].html}
-			if post.related.length
+			if post.relatedPost.length
 				div(class="uppercase text-revolver font-extrabold tracking-wider mb-10 pb-1 border-striped")
 					h2(class="text-2xl") artículos relacionados
-				each related in post.related
+				each related in post.relatedPost
 					+post_card(related)

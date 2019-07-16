@@ -4,7 +4,7 @@ mixin post_card(post)
 			img(src=post.image.secure_url, alt="", class="h-50 object-cover object-center")
 		div(class="flex-grow py-3 fade-out flex flex-col")
 			div(class="flex-grow")
-			if post.tags
+			if post.tags.length
 				p(class="text-silver font-extrabold uppercase text-xs tracking-wider") #{post.tags[0][`label${capitalize(locale)}`]}
 			p(class="text-xs") #{capitalize(moment(post.publishedDate).format('MMMM DD, YYYY'))}
 			h2(class="font-playfair font-bold text-lg hover:text-magenta mt-0 mb-2")

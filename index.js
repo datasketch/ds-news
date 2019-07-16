@@ -41,7 +41,7 @@ app.get('/', async (req, res, next) => {
   try {
     const posts = await getPosts(res.locals.locale)
     const specials = await getSpecials()
-    res.render('home', { posts: posts.slice(1), highlighted: posts[0], specials })
+    res.render('home', { highlighted: posts[0], posts: posts.slice(1), specials })
   } catch (error) {
     debug(error)
     return next(error)
@@ -50,12 +50,10 @@ app.get('/', async (req, res, next) => {
 
 app.get('/p/:slug', async (req, res, next) => {
   try {
-    const data = await getPost(req.params.slug)
-    if (!data.length) {
+    const post = await getPost(req.params.slug)
+    if (!post) {
       return next()
     }
-    const post = data[0]
-    // res.json({ post })
     res.render('post', { post, title: post.title + ' · Datasketch News' })
   } catch (error) {
     debug(error)
