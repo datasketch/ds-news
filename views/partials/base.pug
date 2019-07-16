@@ -14,8 +14,9 @@ html(lang="en")
     else
       title Datasketch News
   body(class="font-raleway")
-    div(class="flex-col")
+    div(class="flex-col h-screen")
       include ./header
-      main(class="container mx-auto px-4 py-20")
+      main(class="container mx-auto px-4 py-20 flex-grow")
         block main
+      include ./footer
       block js
