@@ -11,16 +11,33 @@ block main
         img(src=highlighted.image.secure_url, alt=highlighted.title)
       div(class="w-5/12 self-end px-8")
         +ribbon('Destacado', 'magenta')
-        p.text-sm.mt-2 #{capitalize(moment(highlighted.publishedDate).format('MMMM DD, YYYY'))}
+        p(class="text-sm mt-2") #{capitalize(moment(highlighted.publishedDate).format('MMMM DD, YYYY'))}
         h1(class="font-playfair text-4xl font-bold mb-4 hover:text-magenta")
           a(href=`/p/${highlighted.slug}`) #{highlighted.altTitle ? highlighted.altTitle : highlighted.title}
-        .highlighted-brief !{highlighted.content.brief}
+        div(class="content-brief") !{highlighted.content.brief}
     div(class="flex -mx-8 mb-16 h-72")
       each special, index in specials
-        div(class=`${index ? 'w-5/12' : 'w-7/12'} px-8`)
+        div(class=`${index ? "w-5/12" : "w-7/12"} px-8`)
           div(class="h-full bg-center bg-no-repeat bg-cover relative", style=`background-image: url(${special.image.secure_url}); background-origin: content-box;`)
-            .absolute.inset-0.py-4.px-6.flex.flex-col.justify-center.items-start(style="background-color: rgba(0,0,0,.75)")
+            div(class="absolute inset-0 py-4 px-6 flex flex-col justify-center items-start", style="background-color: rgba(0,0,0,.75)")
               +ribbon('especial', 'white')
               h1(class="font-playfair font-bold text-4xl my-2 text-white hover:text-magenta")
                 a(href=special.link, target="_blank", rel="noopener noreferrer") #{special.title}
-              .special-brief.text-white !{special.description[locale]}
+              div(class="content-brief text-white") !{special.description[locale]}
+    div(class="w-7/12")
+      div(class="flex justify-between uppercase text-revolver font-extrabold tracking-wider mb-10 pb-1 border-striped")
+        h2(class="text-2xl") últimos artículos
+        a(href="#", class="self-end text-xs hover:text-magenta") ver todos
+      each post in posts
+        div(class="flex mb-10 h-50 overflow-hidden")
+          div(class="w-50 flex-shrink-0 mr-6")
+            img(src=post.image.secure_url, alt="", class="h-50 object-cover object-center")
+          div(class="flex-grow py-3 fade-out flex flex-col")
+            div(class="flex-grow")
+            if post.tags
+              p(class="text-silver font-extrabold uppercase text-xs tracking-wider") #{post.tags[0][`label${capitalize(locale)}`]}
+            p(class="text-xs") #{capitalize(moment(post.publishedDate).format('MMMM DD, YYYY'))}
+            h2(class="font-playfair font-bold text-lg hover:text-magenta mt-0 mb-2")
+              a(href=`/p/${post.slug}`) #{post.altTitle ? post.altTitle : post.title}
+            div(class="content-brief text-xs sm") !{post.content.brief}
+      a(href="#", class="bg-revolver text-white uppercase px-4 py-1 text-xs tracking-widest font-extrabold shadow-md leading-loose") ver todos

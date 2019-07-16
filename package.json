@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "DEBUG=ds-news* node index.js",
-    "dev": "npm run build && DEBUG=ds-news* nodemon index.js --ignore public/ --ignore views/",
-    "build": "postcss client/css/*.css -d public/styles"
+    "build": "postcss client/css/*.css -d public/styles",
+    "watch": "postcss client/css/*.css -d public/styles --watch --verbose",
+    "dev": "concurrently \"npm run watch\" \"DEBUG=ds-news* nodemon index.js --ignore public/ --ignore views/\""
   },
   "author": "David Daza <03dazal@gmail.com>",
   "license": "ISC",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.6.1",
+    "concurrently": "^4.1.1",
     "cssnano": "^4.1.10",
     "eslint": "^5.16.0",
     "eslint-config-standard": "^12.0.0",

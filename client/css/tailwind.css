@@ -1,6 +1,5 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
 .lnum {
   -webkit-font-feature-settings: "lnum"; 
@@ -9,38 +8,41 @@
 }
 
 .ribbon {  
+  @apply font-extrabold h-5 tracking-widest px-4 z-10 inline-block;
   clip-path: polygon(0 0, 0 1px, 7.5% 10px, 0 19px, 100% 20px, 100% 19px, 92.5% 10px, 100% 1px, 0 0);
-  display: inline-block;
-  font-weight: 800;
-  height: 20px;
-  letter-spacing: .1em;
   line-height: 20px;
-  padding: 0px 15px;
-  position: relative;
-  z-index: 1;
-}
-
-.ribbon:before {
-  content: "";
-  left: 0;
-  position: absolute;
-  top: 1px;
-  z-index: -1;
-}
-
-.ribbon:after {
-  content: "";
-  right: 0;
-  position: absolute;
-  top: 1px;
-  z-index: -1;
 }
 
 .ribbon-magenta {
-  color: #ffffff;
-  background-color: #b70f7f;
+  @apply text-white bg-magenta;
 }
 
 .ribbon-white {
-  background-color: #ffffff;
+  @apply bg-white;
 }
+
+.ribbon-revolver {
+  @apply bg-revolver;
+}
+
+.border-striped {
+  @apply relative;
+}
+
+.border-striped:before {
+  @apply absolute bottom-0 h-1 bg-cover bg-no-repeat w-full;
+  content: '';
+  background-image: url(/images/diagonal_stripes.svg);
+}
+
+.fade-out {
+  @apply relative h-full;
+}
+
+.fade-out:before {
+  @apply w-full h-5 absolute left-0 bottom-0;
+  content: '';
+  background: linear-gradient(transparent, #ffffff);
+}
+
+@tailwind utilities;

@@ -12,8 +12,9 @@ module.exports = {
         playfair: ['"Playfair Display"', 'serif'],
         pt: ['"PT Serif"', 'serif']
       },
-      height: {
-        72: '18rem'
+      spacing: {
+        '50': '12.5rem',
+        '72': '18rem'
       }
     }
   },

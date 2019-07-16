@@ -13,8 +13,8 @@ html(lang="en")
       title #{`${title} · Datasketch News`}
     else
       title Datasketch News
-  body.font-raleway
-    .flex-col
+  body(class="font-raleway")
+    div(class="flex-col")
       include ./header
       main(class="container mx-auto px-4 py-20")
         block main
