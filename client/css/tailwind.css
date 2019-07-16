@@ -30,7 +30,7 @@
 }
 
 .border-striped:before {
-  @apply absolute bottom-0 h-1 bg-cover bg-no-repeat w-full;
+  @apply absolute bottom-0 h-1 w-full;
   content: '';
   background-image: url(/images/diagonal_stripes.svg);
 }
@@ -43,6 +43,23 @@
   @apply w-full h-5 absolute left-0 bottom-0;
   content: '';
   background: linear-gradient(transparent, #ffffff);
+}
+
+.content-brief p,
+.content-brief p[style],
+.content-brief p [style],
+.content-brief p[style] [style] {
+  font-family: 'PT Serif', serif !important;
+  font-size: 1rem !important;
+  font-style: normal !important;
+  line-height: 1.5 !important;
+}
+
+.content-brief.sm p,
+.content-brief.sm p[style],
+.content-brief.sm p [style],
+.content-brief.sm p[style] [style] {
+  font-size: .875rem !important;
 }
 
 @tailwind utilities;

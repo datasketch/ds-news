@@ -5,7 +5,9 @@ module.exports = {
         revolver: '#2d1536',
         magenta: '#b70f7f',
         silver: '#cccccc',
-        midnight: '#1b0d20'
+        midnight: '#1b0d20',
+        alabaster: '#f8f8f8',
+        onahau: '#caf1ff'
       },
       fontFamily: {
         raleway: ['Raleway', 'sans-serif'],

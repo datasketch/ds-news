@@ -41,7 +41,7 @@ app.get('/', async (req, res, next) => {
   try {
     const posts = await getPosts(res.locals.locale)
     const specials = await getSpecials()
-    res.render('home', { posts: posts.slice(1), highlighted: posts[0], specials: specials.slice(0, 2) })
+    res.render('home', { posts: posts.slice(1), highlighted: posts[0], specials })
   } catch (error) {
     debug(error)
     return next(error)

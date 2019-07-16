@@ -1,53 +1,60 @@
 extends partials/base
+include mixins/post_card
 
 block head
-  //- Google / Search Engine Tags
-  meta(itemprop='name' content=post.seoTitle)
-  meta(itemprop='description' content=post.seoDescription)
-  meta(itemprop='image' content=post.image.secure_url)
-  //- Facebook Meta Tags
-  meta(
-    property='og:url'
-    content=`https://www.datasketch.co/p/${post.slug}`
-  )
-  meta(property='og:type' content='website')
-  meta(property='og:title' content=post.seoTitle)
-  meta(property='og:description' content=post.seoDescription)
-  meta(property='og:image' content=post.image.secure_url)
-  //- Twitter Meta Tags
-  meta(name='twitter:card' content='summary_large_image')
-  meta(name='twitter:title' content=post.seoTitle)
-  meta(name='twitter:description' content=post.seoDescription)
-  meta(name='twitter:image' content=post.image.secure_url)
+	//- Google / Search Engine Tags
+	meta(itemprop='name' content=post.seoTitle)
+	meta(itemprop='description' content=post.seoDescription)
+	meta(itemprop='image' content=post.image.secure_url)
+	//- Facebook Meta Tags
+	meta(
+		property='og:url'
+		content=`https://www.datasketch.co/p/${post.slug}`
+	)
+	meta(property='og:type' content='website')
+	meta(property='og:title' content=post.seoTitle)
+	meta(property='og:description' content=post.seoDescription)
+	meta(property='og:image' content=post.image.secure_url)
+	//- Twitter Meta Tags
+	meta(name='twitter:card' content='summary_large_image')
+	meta(name='twitter:title' content=post.seoTitle)
+	meta(name='twitter:description' content=post.seoDescription)
+	meta(name='twitter:image' content=post.image.secure_url)
+
+block css
+	link(rel="stylesheet", href="/styles/post.css")
 
 block main
-  div(class="w-full sm:w-9/12 mx-auto")
-    .post-header
-      div(class="flex flex-col lg:mx-2 lg:flex-row")
-        div(class="pw-full lg:w-6/12 lg:px-2")
-          img.w-full.object-contain(src=post.image.secure_url, alt=post.title)
-        div(class="mt-4 lg:mt-0 w-full lg:w-6/12 lg:px-2")
-          h3(class="text-dark-purple text-xl mb-2 lg:text-2xl border-b-2 border-dark-purple font-bold") #{post.altTitle ? post.altTitle : post.title}
-          small.font-xs #{capitalize(moment(post.publishedDate).locale(locale).format('MMMM DD, YYYY'))}
-          .post-brief.mt-3.mb-6 !{post.content.brief}
-          if post.authors.length
-            each author in post.authors
-              - var name = author.name.first + ' ' + author.name.last
-              .flex.flex-row.items-center.mb-1
-                if author.image
-                  img.w-12.h-12.mr-2.rounded-full(src=author.image.secure_url, alt=name)
-                small.text-sm #{name}
-  div(class="mt-8 w-full sm:w-7/12 mx-auto")
-    .post-body !{post.content.extended}
-    .flex.flex-row.items-center.justify-center.my-8
-      .w-2.h-2.rounded-full.mx-1.bg-magenta
-      .w-2.h-2.rounded-full.mx-1.bg-magenta
-      .w-2.h-2.rounded-full.mx-1.bg-magenta
-    if post.authors.length
-      each author in post.authors
-        - var name = author.name.first + ' ' + author.name.last
-        div(class="flex flex-col mb-8 w-full sm:w-6/12 mx-auto")
-          .flex.flex-row.items-center
-            img.w-12.h-12.rounded-full.mr-3(src=author.image.secure_url, alt=name)
-            small.text-sm #{name}
-          .mt-4.text-sm !{author[`bio${capitalize(locale)}`].md}
+	div(class="w-3/4 mx-auto")
+		div(class="flex -mx-8 mb-16")
+			div(class="w-7/12 px-8 ")
+				div(class="h-full bg-cover bg-no-repeat bg-center", style=`background-image: url(${post.image.secure_url})`)
+			div(class="w-5/12 px-8")
+				p(class="text-sm mt-2") #{capitalize(moment(post.publishedDate).format('MMMM DD, YYYY'))}
+				h1(class="font-playfair text-4xl font-bold mb-4") #{post.altTitle ? post.altTitle : post.title}
+				div(class="post-brief") !{post.content.brief}
+				if post.authors.length
+					- var author = post.authors[0]
+					- var name = author.name.first + ' ' + author.name.last
+					div(class="flex flex-row items-center mt-6")
+						if author.image
+							img(class="w-12 h-12 rounded-full object-cover object-center mr-4", src=author.image.secure_url, alt=name)
+						p(class="text-xs text-revolver uppercase tracking-wider font-extrabold")= name
+		div(class="w-3/5")
+			div(class="post-body") !{post.content.extended}
+			div(class="flex")
+				p(class="uppercase font-extrabold tracking-wider text-2xl text-revolver") compartir
+			if post.authors.length
+				- var author = post.authors[0]
+				- var name = author.name.first + ' ' + author.name.last
+				div(class="flex flex-row items-center mt-6 mb-10 bg-alabaster px-8 py-6")
+					if author.image
+						img(class="w-20 h-20 rounded-full object-cover object-center mr-4", src=author.image.secure_url, alt=name)
+					.author-info
+						p(class="text-base text-revolver uppercase tracking-widest font-extrabold mb-2")= name
+						div(class="italic text-xs text-revolver") !{author[`bio${capitalize(locale)}`].html}
+			if post.related.length
+				div(class="uppercase text-revolver font-extrabold tracking-wider mb-10 pb-1 border-striped")
+					h2(class="text-2xl") artículos relacionados
+				each related in post.related
+					+post_card(related)
