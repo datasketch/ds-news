@@ -26,14 +26,15 @@ block main
             a(href="#", class="self-end text-xs hover:text-magenta") ver todos
           each post in posts
             +post_card(post)
-          a(href="#", class="bg-revolver text-white uppercase px-4 py-1 text-xs tracking-widest font-extrabold shadow-md leading-loose") ver todos
+          a(href="#", class="btn bg-revolver text-white") ver todos
         div(class="mb-16")
           div(class="flex justify-between uppercase text-revolver font-extrabold tracking-wider mb-10 pb-1 border-striped")
             h2(class="text-sm lg:text-2xl") especiales
-            a(href="#", class="self-end text-xs hover:text-magenta") ver todos
+            a(href=`/${locale === 'es' ? 'especiales' : 'specials'}`, class="self-end text-xs hover:text-magenta") ver todos
           each special in specials.slice(2, 5)
             div(class="h-64 mb-10")
               +special_card(special)
+          a(href=`/${locale === 'es' ? 'especiales' : 'specials'}`, class="btn bg-revolver text-white") ver todos
         if postsByCategory.length
           each category, index in postsByCategory
             div(class=`mb-${(index + 1 === postsByCategory.length) ? '0' : '16'}`)
@@ -42,6 +43,6 @@ block main
                 a(href=`/s/${category.href}`, class="self-end text-xs hover:text-magenta") ver todos
               each post in category.posts
                 +post_card(post)
-              a(href=`/s/${category.href}`, class="bg-revolver text-white uppercase px-4 py-1 text-xs tracking-widest font-extrabold shadow-md leading-loose") ver todos
+              a(href=`/s/${category.href}`, class="btn bg-revolver text-white") ver todos
       div(class="w-full order-first lg:w-2/5 lg:text-right lg:order-none")
         p Lo más leído
