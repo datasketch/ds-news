@@ -8,7 +8,7 @@ const moment = require('moment')
 const morgan = require('morgan')
 const path = require('path')
 const routes = require('./routes')
-const { getPostsByTag } = require('./lib/post')
+const { getPostsByCategory } = require('./lib/post')
 const { categories, menu } = require('./menu')
 
 const app = express()
@@ -46,7 +46,7 @@ app.get('/api/tagged/:tag/:page', async (req, res, next) => {
     return res.json({ posts: [], message: 'Tag not found' })
   }
   try {
-    const posts = await getPostsByTag(lang, tag, page)
+    const posts = await getPostsByCategory(lang, tag, page)
     return res.json({ posts })
   } catch (error) {
     return res.status(500).json({ posts: [], message: error.message })

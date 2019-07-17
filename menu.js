@@ -32,7 +32,7 @@ const menu = [
   {
     label: { es: 'Anticorrupción', en: 'Anticorruption' },
     href: { es: 'anticorrupcion', en: 'anticorruption' },
-    key: 'anticorruption'
+    key: 'anticorrupcion'
   }
 ]
 
