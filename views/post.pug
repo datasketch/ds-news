@@ -25,11 +25,11 @@ block css
 	link(rel="stylesheet", href="/styles/post.css")
 
 block main
-	div(class="w-3/4 mx-auto")
-		div(class="flex -mx-8 mb-16")
-			div(class="w-7/12 px-8 ")
-				div(class="h-full bg-cover bg-no-repeat bg-center", style=`background-image: url(${post.image.secure_url})`)
-			div(class="w-5/12 px-8")
+	div(class="w-full lg:w-5/6 xl:w-3/4 mx-auto")
+		div(class="flex flex-col mb-8 lg:mb-16 lg:flex-row lg:-mx-8")
+			div(class="w-full mb-8 lg:w-7/12 lg:px-8 lg:mb-0")
+				div(class="h-72 bg-cover bg-no-repeat bg-center lg:h-full", style=`background-image: url(${post.image.secure_url})`)
+			div(class="w-full lg:w-5/12 lg:px-8")
 				p(class="text-sm mt-2") #{capitalize(moment(post.publishedDate).format('MMMM DD, YYYY'))}
 				h1(class="font-playfair text-4xl font-bold mb-4") #{post.altTitle ? post.altTitle : post.title}
 				div(class="post-brief") !{post.content.brief}
@@ -40,7 +40,7 @@ block main
 						if author.image
 							img(class="w-12 h-12 rounded-full object-cover object-center mr-4", src=author.image.secure_url, alt=name)
 						p(class="text-xs text-revolver uppercase tracking-wider font-extrabold")= name
-		div(class="w-3/5")
+		div(class="w-full lg:w-3/5")
 			div(class="post-body") !{post.content.extended}
 			div(class="flex")
 				p(class="uppercase font-extrabold tracking-wider text-2xl text-revolver") compartir
