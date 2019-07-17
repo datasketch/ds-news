@@ -1,4 +1,4 @@
-const tags = {
+const categories = {
   es: ['derechos-humanos', 'genero', 'tecnologia-y-sociedad', 'medio-ambiente', 'arte-y-cultura', 'anticorrupcion'],
   en: ['human-rights', 'gender', 'technology-and-society', 'environment', 'art-and-culture', 'anticorruption']
 }
@@ -36,4 +36,4 @@ const menu = [
   }
 ]
 
-module.exports = { tags, menu }
+module.exports = { categories, menu }

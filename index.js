@@ -7,9 +7,9 @@ const i18n = require('i18n')
 const moment = require('moment')
 const morgan = require('morgan')
 const path = require('path')
-const { getPosts, getPost, getPostsByTag } = require('./lib/post')
-const { getSpecials } = require('./lib/special')
-const { tags, menu } = require('./menu')
+const routes = require('./routes')
+const { getPostsByTag } = require('./lib/post')
+const { categories, menu } = require('./menu')
 
 const app = express()
 const port = process.env.PORT || 4000
@@ -22,6 +22,7 @@ i18n.configure({
 i18n.setLocale('es')
 
 app.locals.menu = menu
+app.locals.categories = categories
 app.locals.moment = moment
 app.locals.capitalize = str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 
@@ -36,62 +37,12 @@ app.use((req, res, next) => {
   app.locals.moment.locale(req.getLocale())
   next()
 })
-
-app.get('/', async (req, res, next) => {
-  try {
-    const posts = await getPosts(res.locals.locale)
-    const specials = await getSpecials()
-    res.render('home', { highlighted: posts[0], posts: posts.slice(1), specials })
-  } catch (error) {
-    debug(error)
-    return next(error)
-  }
-})
-
-app.get('/p/:slug', async (req, res, next) => {
-  try {
-    const post = await getPost(req.params.slug)
-    if (!post) {
-      return next()
-    }
-    res.render('post', { post, title: post.title + ' · Datasketch News' })
-  } catch (error) {
-    debug(error)
-    return next(error)
-  }
-})
-
-app.get('/tags/:tag', async (req, res, next) => {
-  const { tag } = req.params
-  const lang = res.locals.locale
-  if (!tags[lang].includes(tag)) {
-    return next()
-  }
-  try {
-    const search = lang === 'es' ? tag : tags.es[tags.en.indexOf(tag)]
-    const posts = await getPostsByTag(lang, search)
-    res.render('tags', { posts, search })
-  } catch (error) {
-    return next(error)
-  }
-})
-
-app.get('/especiales', handleRoute)
-app.get('/specials', handleRoute)
-
-async function handleRoute (req, res, next) {
-  try {
-    const specials = await getSpecials()
-    res.render('specials', { specials })
-  } catch (error) {
-    return next(error)
-  }
-}
+app.use('/', routes)
 
 app.get('/api/tagged/:tag/:page', async (req, res, next) => {
   const { tag, page } = req.params
   const lang = res.locals.locale
-  if (!tags.es.includes(tag)) {
+  if (!categories.es.includes(tag)) {
     return res.json({ posts: [], message: 'Tag not found' })
   }
   try {

@@ -10,7 +10,7 @@ header(class="container mx-auto px-4")
 	nav
 		ul(class="flex justify-between text-revolver text-xs tracking-widest")
 			each section in menu
-				li(class="hover:text-magenta")
-					a(class="uppercase", href=`/tags/${section.href[locale]}`)= section.label[locale]
+				li(class=`hover:text-magenta${section.href[locale] === locals.section ? ' text-magenta' : ''}`)
+					a(class="uppercase", href=`/s/${section.href[locale]}`)= section.label[locale]
 			li(class="hover:text-magenta")
 				a(class="uppercase", href=`/${locale === 'es' ? 'especiales' : 'specials'}`) #{locale === 'es' ? 'Especiales' : 'Specials'}
