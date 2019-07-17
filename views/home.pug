@@ -4,44 +4,44 @@ include mixins/special_card
 include mixins/post_card
 
 block main
-  div(class="w-3/4 mx-auto")
-    div(class="flex -mx-8 mb-16")
-      div(class="w-7/12 px-8")
+  div(class="w-full lg:w-5/6 xl:w-3/4 mx-auto")
+    div(class="flex flex-col mb-16 lg:flex-row lg:-mx-8")
+      div(class="mb-8 lg:w-7/12 lg:px-8 lg:mb-0")
         img(src=highlighted.image.secure_url, alt=highlighted.title)
-      div(class="w-5/12 self-end px-8")
+      div(class="lg:w-5/12 lg:px-8 lg:self-end")
         +ribbon('Destacado', 'magenta')
-        p(class="text-sm mt-2") #{capitalize(moment(highlighted.publishedDate).format('MMMM DD, YYYY'))}
-        h1(class="font-playfair text-4xl font-bold mb-4 hover:text-magenta")
+        p(class="text-xs mt-2 sm:text-sm") #{capitalize(moment(highlighted.publishedDate).format('MMMM DD, YYYY'))}
+        h1(class="font-playfair text-lg font-bold mb-2 hover:text-magenta sm:text-2xl lg:text-4xl lg:mb-4")
           a(href=`/p/${highlighted.slug}`) #{highlighted.altTitle ? highlighted.altTitle : highlighted.title}
         div(class="content-brief") !{highlighted.content.brief}
-    div(class="flex -mx-8 mb-16 h-72")
+    div(class="flex flex-col mb-16 lg:h-72 lg:flex-row lg:-mx-8")
       each special, index in specials.slice(0, 2)
-        div(class=`${index ? "w-5/12" : "w-7/12"} px-8`)
+        div(class=`w-full h-56 ${index ? "lg:w-5/12" : "mb-8 lg:w-7/12 lg:mb-0"} lg:px-8 lg:h-auto`)
           +special_card(special)
-    div(class="flex justify-between")
-      div(class="w-3/5")
+    div(class="flex flex-col lg:flex-row lg:justify-between")
+      div(class="w-full order-last lg:w-3/5 lg:order-none")
         div(class="mb-16")
           div(class="flex justify-between uppercase text-revolver font-extrabold tracking-wider mb-10 pb-1 border-striped")
-            h2(class="text-2xl") últimos artículos
+            h2(class="text-sm lg:text-2xl") últimos artículos
             a(href="#", class="self-end text-xs hover:text-magenta") ver todos
           each post in posts
             +post_card(post)
           a(href="#", class="bg-revolver text-white uppercase px-4 py-1 text-xs tracking-widest font-extrabold shadow-md leading-loose") ver todos
         div(class="mb-16")
           div(class="flex justify-between uppercase text-revolver font-extrabold tracking-wider mb-10 pb-1 border-striped")
-            h2(class="text-2xl") especiales
+            h2(class="text-sm lg:text-2xl") especiales
             a(href="#", class="self-end text-xs hover:text-magenta") ver todos
           each special in specials.slice(2, 5)
             div(class="h-64 mb-10")
               +special_card(special)
         if postsByCategory.length
-          each category in postsByCategory
-            div(class="mb-16")
+          each category, index in postsByCategory
+            div(class=`mb-${(index + 1 === postsByCategory.length) ? '0' : '16'}`)
               div(class="flex justify-between uppercase text-revolver font-extrabold tracking-wider mb-10 pb-1 border-striped")
-                h2(class="text-2xl") #{category.label}
+                h2(class="text-sm lg:text-2xl") #{category.label}
                 a(href=`/s/${category.href}`, class="self-end text-xs hover:text-magenta") ver todos
               each post in category.posts
                 +post_card(post)
               a(href=`/s/${category.href}`, class="bg-revolver text-white uppercase px-4 py-1 text-xs tracking-widest font-extrabold shadow-md leading-loose") ver todos
-      div(class="w-2/5 text-right")
+      div(class="w-full order-first lg:w-2/5 lg:text-right lg:order-none")
         p Lo más leído

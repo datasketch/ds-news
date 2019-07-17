@@ -30,7 +30,7 @@
 }
 
 .border-striped:before {
-  @apply absolute bottom-0 h-1 w-full;
+  @apply absolute bottom-0 h-1 w-full bg-cover;
   content: '';
   background-image: url(/images/diagonal_stripes.svg);
 }
@@ -40,9 +40,9 @@
 }
 
 .fade-out:before {
-  @apply w-full h-5 absolute left-0 bottom-0;
+  @apply w-full absolute left-0 bottom-0;
   content: '';
-  background: linear-gradient(transparent, #ffffff);
+  background: none;
 }
 
 .content-brief p,
@@ -60,6 +60,19 @@
 .content-brief.sm p [style],
 .content-brief.sm p[style] [style] {
   font-size: .875rem !important;
+}
+
+@screen sm {
+  .fade-out:before {
+    @apply h-3;
+    background: linear-gradient(transparent, #ffffff);
+  }
+}
+
+@screen lg {
+  .fade-out:before {
+    @apply h-5;
+  }
 }
 
 @tailwind utilities;

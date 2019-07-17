@@ -1,12 +1,12 @@
 mixin post_card(post)
-	div(class="flex mb-10 h-50 overflow-hidden")
-		div(class="w-50 flex-shrink-0 mr-6")
-			img(src=post.image.secure_url, alt="", class="h-50 object-cover object-center")
-		div(class="flex-grow py-3 fade-out flex flex-col")
+	div(class="flex flex-col mb-10 h-auto overflow-hidden sm:flex-row sm:h-50")
+		div(class="w-full flex-shrink-0 mr-0 mb-6 sm:mr-6 sm:w-50 lg:mb-0")
+			img(src=post.image.secure_url, alt="", class="h-50 w-full object-cover object-center")
+		div(class="flex-grow py-0 fade-out flex flex-col lg:py-3")
 			div(class="flex-grow")
 			if post.tags.length
 				p(class="text-silver font-extrabold uppercase text-xs tracking-wider") #{post.tags[0][`label${capitalize(locale)}`]}
 			p(class="text-xs") #{capitalize(moment(post.publishedDate).format('MMMM DD, YYYY'))}
-			h2(class="font-playfair font-bold text-lg hover:text-magenta mt-0 mb-2")
+			h2(class="font-playfair font-bold text-base hover:text-magenta mt-0 mb-2 lg:text-lg")
 				a(href=`/p/${post.slug}`) #{post.altTitle ? post.altTitle : post.title}
 			div(class="content-brief text-xs sm") !{post.content.brief}
