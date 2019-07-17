@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    block head
-    link(href="https://fonts.googleapis.com/css?family=PT+Serif:400,400i|Playfair+Display:700|Raleway:200,400,800&display=swap", rel="stylesheet")
-    link(rel="stylesheet", href="/styles/tailwind.css")
-    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
-    block css
-    if title
-      title #{`${title} · Datasketch News`}
-    else
-      title Datasketch News
-  body(class="font-raleway")
-    div(class="flex-col h-screen")
-      include ./header
-      main(class="container mx-auto px-4 py-16 flex-grow")
-        block main
-      include ./footer
-      block js
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(http-equiv="X-UA-Compatible", content="ie=edge")
+		block head
+		link(href="https://fonts.googleapis.com/css?family=PT+Serif:400,400i|Playfair+Display:700|Raleway:200,400,800&display=swap", rel="stylesheet")
+		link(rel="stylesheet", href="/styles/tailwind.css")
+		link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
+		if env === 'production'
+			script(async='', src='https://www.googletagmanager.com/gtag/js?id=UA-66152192-2')
+			script.
+				window.dataLayer = window.dataLayer || [];
+				function gtag() {
+					dataLayer.push(arguments);
+				}
+				gtag('js', new Date());
+				gtag('config', 'UA-66152192-2');
+		block css
+		if title
+			title #{`${title} · Datasketch News`}
+		else
+			title Datasketch News
+	body(class="font-raleway")
+		div(class="flex-col h-screen")
+			include ./header
+			main(class="container mx-auto px-4 py-16 flex-grow")
+				block main
+			include ./footer
+			block js

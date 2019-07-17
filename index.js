@@ -21,6 +21,7 @@ i18n.configure({
 
 i18n.setLocale('es')
 
+app.locals.env = process.env.NODE_ENV
 app.locals.menu = menu
 app.locals.categories = categories
 app.locals.moment = moment
