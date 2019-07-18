@@ -5,7 +5,7 @@ mixin post_card(post)
 		div(class="flex-grow py-0 fade-out flex flex-col lg:py-3")
 			div(class="flex-grow")
 			if post.tags.length
-				p(class="text-silver font-extrabold uppercase text-xs tracking-wider") #{post.tags[0][`label${capitalize(locale)}`]}
+				p(class="text-silver font-extrabold uppercase text-xs tracking-wider") #{post.tags[0].labelEs}
 			p(class="text-xs") #{capitalize(moment(post.publishedDate).format('MMMM DD, YYYY'))}
 			h2(class="font-playfair font-bold text-base hover:text-magenta mt-0 mb-2 lg:text-lg")
 				a(href=`/p/${post.slug}`) #{post.altTitle ? post.altTitle : post.title}

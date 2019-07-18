@@ -1,39 +1,19 @@
-const categories = {
-  es: ['derechos-humanos', 'genero', 'tecnologia-y-sociedad', 'medio-ambiente', 'arte-y-cultura', 'anticorrupcion'],
-  en: ['human-rights', 'gender', 'technology-and-society', 'environment', 'art-and-culture', 'anticorruption']
-}
+const categories = [
+  'derechos-humanos',
+  'genero',
+  'tecnologia-y-sociedad',
+  'medio-ambiente',
+  'arte-y-cultura',
+  'anticorrupcion'
+]
 
 const menu = [
-  {
-    label: { es: 'Derechos Humanos', en: 'Human Rights' },
-    href: { es: 'derechos-humanos', en: 'human-rights' },
-    key: 'derechos-humanos'
-  },
-  {
-    label: { es: 'Género', en: 'Gender' },
-    href: { es: 'genero', en: 'gender' },
-    key: 'genero'
-  },
-  {
-    label: { es: 'Medio Ambiente', en: 'Environment' },
-    href: { es: 'medio-ambiente', en: 'environment' },
-    key: 'medio-ambiente'
-  },
-  {
-    label: { es: 'Arte y cultura', en: 'Art and Culture' },
-    href: { es: 'arte-y-cultura', en: 'art-and-culture' },
-    key: 'arte-y-cultura'
-  },
-  {
-    label: { es: 'Tecnología y sociedad', en: 'Technology and Society' },
-    href: { es: 'tecnologia-y-sociedad', en: 'technology-and-society' },
-    key: 'tecnologia-y-sociedad'
-  },
-  {
-    label: { es: 'Anticorrupción', en: 'Anticorruption' },
-    href: { es: 'anticorrupcion', en: 'anticorruption' },
-    key: 'anticorrupcion'
-  }
+  { label: 'Derechos Humanos', href: 'derechos-humanos', key: 'derechos-humanos' },
+  { label: 'Género', href: 'genero', key: 'genero' },
+  { label: 'Medio Ambiente', href: 'medio-ambiente', key: 'medio-ambiente' },
+  { label: 'Arte y cultura', href: 'arte-y-cultura', key: 'arte-y-cultura' },
+  { label: 'Tecnología y sociedad', href: 'tecnologia-y-sociedad', key: 'tecnologia-y-sociedad' },
+  { label: 'Anticorrupción', href: 'anticorrupcion', key: 'anticorrupcion' }
 ]
 
 module.exports = { categories, menu }

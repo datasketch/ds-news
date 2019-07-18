@@ -7,15 +7,14 @@ const router = express.Router()
 
 router.get('/', async (req, res, next) => {
   const { menu } = req.app.locals
-  const lang = res.locals.locale
   try {
     const posts = await getPosts(res.locals.locale)
     const specials = await getSpecials()
-    const byCategory = await Promise.all(menu.map(({ key }) => getPostsByCategory(lang, key, 1, 3)))
+    const byCategory = await Promise.all(menu.map(({ key }) => getPostsByCategory(key, 1, 3)))
     const postsByCategory = menu.map((item, index) => {
       return {
-        label: item.label[lang],
-        href: item.href[lang],
+        label: item.label,
+        href: item.href,
         posts: byCategory[index]
       }
     })
@@ -28,15 +27,14 @@ router.get('/', async (req, res, next) => {
 
 router.get('/s/:category', async (req, res, next) => {
   const { category } = req.params
-  const { categories } = req.app.locals
-  const lang = res.locals.locale
-  if (!categories[lang].includes(category)) {
+  const { categories, menu } = req.app.locals
+  if (!categories.includes(category)) {
     return next()
   }
   try {
-    const search = lang === 'es' ? category : categories.es[categories.en.indexOf(category)]
-    const posts = await getPostsByCategory(lang, search)
-    res.render('tags', { posts, search, section: category })
+    const posts = await getPostsByCategory(category)
+    const section = menu.find((item) => item.key === category)
+    res.render('category', { posts, category, section })
   } catch (error) {
     return next(error)
   }

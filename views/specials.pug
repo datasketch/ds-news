@@ -9,5 +9,5 @@ block main
 					img.post-image.w-full(src=special.image.secure_url, alt=special.title)
 				div(class="w-full sm:w-8/12 px-2")
 					h2.post-title.mb-3.text-xl
-						a.text-dark-purple(href=special.link)= special.title
-					.post-brief !{special.description[locale]}
+						a.text-dark-purple(href=special.link) #{special.title}
+					.post-brief !{special.description.es}

@@ -9,8 +9,8 @@ header(class="container mx-auto px-4")
 			a(class="hover:text-magenta", href="https://www.instagram.com/datasketch/", rel="noopener noreferrer", target="_blank"): i(class="fa fa-instagram")
 	nav
 		ul(class="flex flex-col justify-between text-revolver text-xs tracking-widest md:flex-row")
-			each section in menu
-				li(class=`hover:text-magenta${section.href[locale] === locals.section ? ' text-magenta' : ''} md:text-center lg:text-left px-2`)
-					a(class="uppercase", href=`/s/${section.href[locale]}`)= section.label[locale]
-			li(class="hover:text-magenta md:text-center lg:text-left px-2")
-				a(class="uppercase", href=`/${locale === 'es' ? 'especiales' : 'specials'}`) #{locale === 'es' ? 'Especiales' : 'Specials'}
+			each link in menu
+				li(class=`${link.key === category ? ' text-magenta' : ''} md:text-center lg:text-left px-2`)
+					a(class="uppercase hover:text-magenta", href=`/s/${link.href}`) #{link.label}
+			li(class="md:text-center lg:text-left px-2")
+				a(class="uppercase hover:text-magenta", href="/especiales") Especiales

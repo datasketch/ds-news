@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "DEBUG=ds-news* node index.js",
-    "build": "postcss client/css/*.css -d public/styles",
-    "watch": "postcss client/css/*.css -d public/styles --watch --verbose",
-    "dev": "concurrently \"npm run watch\" \"DEBUG=ds-news* nodemon index.js --ignore public/ --ignore views/\""
+    "build": "postcss client/css/*.css -d public/styles --env production",
+    "client:dev": "postcss client/css/*.css -d public/styles --watch --verbose",
+    "dev": "concurrently \"npm run client:dev\" \"DEBUG=ds-news* nodemon index.js --ignore public/ --ignore views/\""
   },
   "author": "David Daza <03dazal@gmail.com>",
   "license": "ISC",
@@ -24,6 +24,7 @@
     "tailwindcss": "^1.0.5"
   },
   "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^1.2.0",
     "autoprefixer": "^9.6.1",
     "concurrently": "^4.1.1",
     "cssnano": "^4.1.10",

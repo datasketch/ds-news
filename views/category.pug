@@ -1,0 +1,17 @@
+extends partials/base
+include mixins/post_card
+
+block main
+  input#category(type="hidden", name="category", value=category)
+  div(class="w-full lg:w-5/6 xl:w-3/4 mx-auto")
+    div(class="uppercase text-revolver font-extrabold tracking-wider mb-10 pb-1 border-striped")
+      h2(class="text-sm lg:text-2xl") #{section.label}
+    section#tagged-posts
+      each post in posts
+        +post_card(post)
+    #target.w-full.border-t
+
+block js
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js")
+  script(src="/js/renderer.js")
+  script(src="/js/scroller.js")

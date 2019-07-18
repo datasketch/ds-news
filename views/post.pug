@@ -52,7 +52,7 @@ block main
 						img(class="w-20 h-20 rounded-full object-cover object-center mr-4", src=author.image.secure_url, alt=name)
 					.author-info
 						p(class="text-base text-revolver uppercase tracking-widest font-extrabold mb-2")= name
-						div(class="italic text-xs text-revolver") !{author[`bio${capitalize(locale)}`].html}
+						div(class="italic text-xs text-revolver") !{author[`bioEs`].html}
 			if post.relatedPost.length
 				div(class="uppercase text-revolver font-extrabold tracking-wider mb-10 pb-1 border-striped")
 					h2(class="text-2xl") artículos relacionados

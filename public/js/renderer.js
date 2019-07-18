@@ -29,60 +29,55 @@ const render = node => {
 
 const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 
-const createPost = (imageUrl, title, slug, publishedDate, locale) => {
+function renderPostCard (post) {
   return render(
-    createElement('article', {
+    createElement('div', {
       attrs: {
-        class: 'post flex flex-col sm:flex-row mb-8 -mx-2'
+        class: 'flex flex-col mb-10 h-auto overflow-hidden sm:flex-row sm:h-50'
       },
       children: [
         createElement('div', {
           attrs: {
-            class: 'w-full sm:w-3/12 px-2'
+            class: 'w-full flex-shrink-0 mr-0 mb-6 sm:mr-6 sm:w-50 lg:mb-0'
           },
           children: [
             createElement('img', {
               attrs: {
-                class: 'post-image w-full',
-                src: imageUrl,
-                alt: title
+                src: post.image.secure_url,
+                class: 'h-50 w-full object-cover object-center'
               }
             })
           ]
         }),
         createElement('div', {
           attrs: {
-            class: 'w-full sm:w-9/12 px-2'
+            class: 'flex-grow py-0 fade-out flex flex-col lg:py-3'
           },
           children: [
-            // date
-            createElement('small', {
+            createElement('div', { attrs: { class: 'flex-grow' } }),
+            // tag
+            createElement('p', {
               attrs: {
-                class: 'post-date font-lora text-xs'
+                class: 'text-xs'
               },
-              children: [
-                capitalize(window.moment(publishedDate).locale(locale).format('MMMM DD, YYYY'))
-              ]
+              children: [capitalize(window.moment(post.publishedDate).format('MMMM DD, YYYY'))]
             }),
-            // title
             createElement('h2', {
               attrs: {
-                class: 'post-title mb-3 text-xl'
+                class: 'font-playfair font-bold text-base hover:text-magenta mt-0 mb-2 lg:text-lg'
               },
               children: [
                 createElement('a', {
                   attrs: {
-                    class: 'text-dark-purple',
-                    href: `/p/${slug}`
+                    href: `/p/${post.slug}`
                   },
-                  children: [title]
+                  children: [post.altTitle ? post.altTitle : post.title]
                 })
               ]
             }),
-            // content
             createElement('div', {
               attrs: {
-                class: 'post-brief'
+                class: 'content-brief text-xs sm'
               }
             })
           ]
@@ -92,4 +87,4 @@ const createPost = (imageUrl, title, slug, publishedDate, locale) => {
   )
 }
 
-window.createPost = createPost
+window.renderPostCard = renderPostCard

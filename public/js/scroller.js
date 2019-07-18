@@ -1,6 +1,5 @@
 const container = document.querySelector('#tagged-posts')
-const tag = document.querySelector('#tag').value
-const locale = document.querySelector('#lang').value
+const category = document.querySelector('#category').value
 
 let page = 2
 let loaded = 0
@@ -18,7 +17,7 @@ window.addEventListener('load', function (event) {
 function handleIntersect (entries, observer) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      const url = `/api/tagged/${tag}/${page}`
+      const url = `/api/${category}/${page}`
       page++
       loaded++
       fetch(url)
@@ -29,9 +28,8 @@ function handleIntersect (entries, observer) {
             observer.disconnect()
           }
           posts.map(post => {
-            const title = post.altTitle ? post.altTitle : post.title
-            const article = window.createPost(post.image.secure_url, title, post.slug, post.publishedDate, locale)
-            const brief = article.querySelector('.post-brief')
+            const article = window.renderPostCard(post)
+            const brief = article.querySelector('.content-brief')
             brief.innerHTML = post.content.brief
             container.append(article)
           })
