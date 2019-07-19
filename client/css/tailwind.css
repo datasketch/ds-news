@@ -8,7 +8,7 @@
 }
 
 .ribbon {  
-  @apply font-extrabold h-5 tracking-widest px-4 z-10 inline-block;
+  @apply font-extrabold h-5 tracking-widest px-4 z-10 inline-block bg-white;
   clip-path: polygon(0 0, 0 1px, 7.5% 10px, 0 19px, 100% 20px, 100% 19px, 92.5% 10px, 100% 1px, 0 0);
   line-height: 20px;
 }
@@ -19,10 +19,6 @@
 
 .ribbon-white {
   @apply bg-white;
-}
-
-.ribbon-revolver {
-  @apply bg-revolver;
 }
 
 .border-striped {

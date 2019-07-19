@@ -10,7 +10,8 @@ const prod = [
   cssnano({ preset: 'default' }),
   purgecss({
     content: ['./views/**/*.pug'],
-    defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || []
+    whitelistPatterns: [/ribbon-?/g],
+    defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || [],
   })
 ]
 
