@@ -23,10 +23,10 @@ block main
         div(class="mb-16")
           div(class="flex justify-between uppercase text-revolver font-extrabold tracking-wider mb-10 pb-1 border-striped")
             h2(class="text-sm lg:text-2xl") últimos artículos
-            a(href="#", class="self-end text-xs hover:text-magenta") ver todos
+            a(href="/p", class="self-end text-xs hover:text-magenta") ver todos
           each post in posts
             +post_card(post)
-          a(href="#", class="btn bg-revolver text-white") ver todos
+          a(href="/p", class="btn bg-revolver text-white") ver todos
         div(class="mb-16")
           div(class="flex justify-between uppercase text-revolver font-extrabold tracking-wider mb-10 pb-1 border-striped")
             h2(class="text-sm lg:text-2xl") especiales

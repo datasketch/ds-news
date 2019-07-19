@@ -40,6 +40,16 @@ router.get('/s/:category', async (req, res, next) => {
   }
 })
 
+router.get('/p', async (req, res, next) => {
+  try {
+    const posts = await getPosts(60)
+    res.render('posts', { posts })
+  } catch (error) {
+    debug(error)
+    return next(error)
+  }
+})
+
 router.get('/p/:slug', async (req, res, next) => {
   try {
     const post = await getPost(req.params.slug)
