@@ -51,13 +51,6 @@
   line-height: 1.5 !important;
 }
 
-.content-brief.sm p,
-.content-brief.sm p[style],
-.content-brief.sm p [style],
-.content-brief.sm p[style] [style] {
-  font-size: .875rem !important;
-}
-
 .btn {
   @apply uppercase px-4 py-1 text-xs tracking-widest font-extrabold shadow-md leading-loose;
 }

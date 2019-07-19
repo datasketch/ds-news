@@ -4,4 +4,4 @@ mixin special_card(special)
 			+ribbon('especial', 'white')
 			h1(class="font-playfair text-lg font-bold my-2 text-white hover:text-magenta sm:text-2xl xl:text-3xl")
 				a(href=special.link, target="_blank", rel="noopener noreferrer") #{special.title}
-			div(class="content-brief text-white hidden md:block") !{special.description[locale]}
+			div(class="content-brief text-white hidden md:block") !{special.description.es}
