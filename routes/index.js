@@ -63,7 +63,7 @@ router.get('/p/:slug', async (req, res, next) => {
   }
 })
 
-router.get(['/especiales', '/specials'], async (req, res, next) => {
+router.get('/especiales', async (req, res, next) => {
   try {
     const specials = await getSpecials()
     res.render('specials', { specials })
