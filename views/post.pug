@@ -23,8 +23,13 @@ block head
 
 block css
 	link(rel="stylesheet", href="/styles/post.css")
+	script.
+		window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f)};return t}(document,"script","twitter-wjs"))
 
 block main
+	#fb-root
+	script.
+		(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src='https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.2&appId=673366983030698&autoLogAppEvents=1';fjs.parentNode.insertBefore(js,fjs)}(document,'script','facebook-jssdk'))
 	div(class="w-full lg:w-5/6 xl:w-3/4 mx-auto")
 		div(class="flex flex-col mb-8 lg:mb-16 lg:flex-row lg:-mx-8")
 			div(class="w-full mb-8 lg:w-7/12 lg:px-8 lg:mb-0")
@@ -42,8 +47,14 @@ block main
 						p(class="text-xs text-revolver uppercase tracking-wider font-extrabold")= name
 		div(class="w-full lg:w-3/5")
 			div(class="post-body") !{post.content.extended}
-			div(class="flex")
-				p(class="uppercase font-extrabold tracking-wider text-2xl text-revolver") compartir
+			div(class="flex items-center")
+				p(class="uppercase font-extrabold tracking-wider text-2xl text-revolver mr-6") compartir
+				.flex.items-center.leading-tight
+					a.twitter-share-button(href="https://twitter.com/intent/tweet", data-url=`http://www.datasketch.news/p/${post.slug}`, data-text=(post.altTitle ? post.altTitle : post.title))
+						Tweet
+					div(class="mr-2")
+					.fb-share-button(data-href=`http://www.datasketch.news/p/${post.slug}`, data-layout="button", data-size="small", data-mobile-iframe="true"): a.fb-xfbml-parse-ignore(target="_blank")
+						Compartir
 			if post.authors.length
 				- var author = post.authors[0]
 				- var name = author.name.first + ' ' + author.name.last
