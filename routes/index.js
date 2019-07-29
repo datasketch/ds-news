@@ -34,7 +34,7 @@ router.get('/s/:category', async (req, res, next) => {
   try {
     const posts = await getPostsByCategory(category)
     const section = menu.find((item) => item.key === category)
-    res.render('category', { posts, category, section })
+    res.render('category', { posts, category, section, title: section.label })
   } catch (error) {
     return next(error)
   }
@@ -66,7 +66,7 @@ router.get('/p/:slug', async (req, res, next) => {
 router.get('/especiales', async (req, res, next) => {
   try {
     const specials = await getSpecials()
-    res.render('specials', { specials })
+    res.render('specials', { specials, title: 'Especiales' })
   } catch (error) {
     return next(error)
   }

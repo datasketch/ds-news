@@ -1,6 +1,20 @@
 extends partials/base
 include mixins/post_card
 
+block head
+  if category === 'derechos-humanos'
+    meta(name="description", content="Historias enfocadas en derechos humanos alrededor del mundo.")
+  else if category === 'genero'
+    meta(name="description", content="Historias que giran en torno a la mujer y a la comunidad LGBTIQ+")
+  else if category === 'tecnologia-y-sociedad'
+    meta(name="description", content="Derechos digitales, inteligencia artificial y datos abiertos.")
+  else if category === 'medio-ambiente'
+    meta(name="description", content="Derechos ambientales y huella ambiental.")
+  else if category === 'arte-y-cultura'
+    meta(name="description", content="Conoce iniciativas artísticas relacionadas con datos.")
+  else if category === 'anticorrupcion'
+    meta(name="description", content="Historias que giran en torno a la corrupción y la política. ")
+
 block main
   input#category(type="hidden", name="category", value=category)
   div(class="w-full lg:w-5/6 xl:w-3/4 mx-auto")
