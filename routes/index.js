@@ -2,6 +2,7 @@ const debug = require('debug')('ds-news:routes')
 const express = require('express')
 const { getPosts, getPost, getPostsByCategory } = require('../lib/post')
 const { getSpecials } = require('../lib/special')
+const { getMembers } = require('../lib/member')
 
 const router = express.Router()
 
@@ -67,6 +68,15 @@ router.get('/especiales', async (req, res, next) => {
   try {
     const specials = await getSpecials()
     res.render('specials', { specials, title: 'Especiales' })
+  } catch (error) {
+    return next(error)
+  }
+})
+
+router.get('/quienes-somos', async (req, res, next) => {
+  try {
+    const members = await getMembers()
+    res.render('about', { members, title: 'Quiénes somos' })
   } catch (error) {
     return next(error)
   }

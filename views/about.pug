@@ -1,0 +1,18 @@
+extends partials/base
+
+block main
+  div(class="w-full lg:w-5/6 xl:w-3/4 mx-auto")
+    h1(class="font-playfair text-4xl font-bold mb-4 text-revolver") ¿Quiénes somos?
+    p(class="font-pt text-revolver mb-4") Datasketch es una plataforma digital de periodismo de investigación y de datos. Nuestro portal permite que periodistas, científicos de datos, científicos sociales y la ciudadanía en general pueda aprender y consultar sobre visualizaciones de datos, herramientas, software e investigaciones profundas sobre diversos temas coyunturales. Contamos con herramientas gratuitas de datos y diferentes proyectos para tender un puente entre los datos y la ciudadanía que facilite la democratización del conocimiento y una revisión crítica de las realidades sociales a partir de contrastes de información.
+    a(href="https://www.datasketch.co", target="_blank", rel="noopener noreferrer", class="btn bg-revolver text-white") Ir a datasketch.co
+    div(class="text-center mt-10")
+      div(class="inline-flex uppercase text-revolver font-extrabold tracking-wider mb-10 pb-1 border-striped")
+        h2(class="text-sm lg:text-2xl") nuestro equipo
+    div(class="flex flex-col lg:flex-wrap lg:flex-row lg:-mx-10 lg:mt-10")
+      each member in members
+        div(class="w-full lg:w-1/2 lg:px-10 mb-10 lg:mb-20")
+          div(class="flex flex-col items-center md:flex-row")
+            img(src=member.avatar.secure_url, alt=member.name, class="rounded-full w-32 h-32 object-cover object-center mr-5 mb-5 md:mb-0")
+            .member-info
+              p(class="text-sm lg:text-lg tracking-wide text-revolver uppercase font-extrabold mb-5 font-playfair text-center md:text-left")= member.name
+              .italic.text-sm.text-revolver.font-pt !{member.description.es.html}
