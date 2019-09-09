@@ -44,7 +44,10 @@ block main
 					div(class="flex flex-row items-center mt-6")
 						if author.image
 							img(class="w-12 h-12 rounded-full object-cover object-center mr-4", src=author.image.secure_url, alt=name)
-						p(class="text-xs text-revolver uppercase tracking-wider font-extrabold")= name
+						.flex.flex-col
+							p(class="text-xs text-revolver uppercase tracking-wider font-extrabold")= name
+							if author.twitter
+								p(class="text-xs text-revolver uppercase tracking-wider"): a(href=`https://twitter.com${author.twitter}`, target="_blank", rel="nooopener noreferrer") @#{author.twitter}
 		div(class="w-full lg:w-3/5")
 			div(class="post-body") !{post.content.extended}
 			div(class="flex items-center")
