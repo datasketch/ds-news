@@ -47,7 +47,7 @@ block main
 						.flex.flex-col
 							p(class="text-xs text-revolver uppercase tracking-wider font-extrabold")= name
 							if author.twitter
-								p(class="text-xs text-revolver uppercase tracking-wider"): a(href=`https://twitter.com${author.twitter}`, target="_blank", rel="nooopener noreferrer") @#{author.twitter}
+								p(class="text-xs text-revolver uppercase tracking-wider"): a(href=`https://twitter.com/${author.twitter}`, target="_blank", rel="nooopener noreferrer") @#{author.twitter}
 		div(class="w-full lg:w-3/5")
 			div(class="post-body") !{post.content.extended}
 			div(class="flex items-center")
