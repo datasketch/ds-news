@@ -36,7 +36,7 @@ block main
 				div(class="h-72 bg-cover bg-no-repeat bg-center lg:h-full", style=`background-image: url(${post.image.secure_url})`)
 			div(class="w-full lg:w-5/12 lg:px-8")
 				p(class="text-sm mt-2") #{capitalize(moment(post.publishedDate).format('MMMM DD, YYYY'))}
-				h1(class="font-playfair text-4xl font-bold mb-4") #{post.altTitle ? post.altTitle : post.title}
+				h1(class="font-playfair text-4xl font-bold mb-4 leading-tight") #{post.altTitle ? post.altTitle : post.title}
 				div(class="post-brief") !{post.content.brief}
 				if post.authors.length
 					- var author = post.authors[0]
