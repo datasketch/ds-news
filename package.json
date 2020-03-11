@@ -15,6 +15,7 @@
     "debug": "^4.1.1",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
+    "helmet": "^3.21.3",
     "i18n": "^0.8.3",
     "moment": "^2.24.0",
     "mongoose": "^5.6.4",
@@ -37,7 +38,6 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "helmet": "^3.21.3",
     "nodemon": "^1.19.1",
     "prettier": "1.19.1",
     "prettier-config-standard": "^1.0.1"
