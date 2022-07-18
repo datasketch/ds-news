@@ -52,16 +52,17 @@ router.get('/p', async (req, res, next) => {
 })
 
 router.get('/p/:slug', async (req, res, next) => {
-  try {
-    const post = await getPost(req.params.slug)
-    if (!post) {
-      return next()
-    }
-    res.render('post', { post, title: post.title + ' · Datasketch News' })
-  } catch (error) {
-    debug(error)
-    return next(error)
-  }
+  return res.redirect(`https://www.datasketch.co/p/${req.params.slug}`)
+  // try {
+  //   const post = await getPost(req.params.slug)
+  //   if (!post) {
+  //     return next()
+  //   }
+  //   res.render('post', { post, title: post.title + ' · Datasketch News' })
+  // } catch (error) {
+  //   debug(error)
+  //   return next(error)
+  // }
 })
 
 router.get('/especiales', async (req, res, next) => {
@@ -74,12 +75,13 @@ router.get('/especiales', async (req, res, next) => {
 })
 
 router.get('/quienes-somos', async (req, res, next) => {
-  try {
-    const members = await getMembers()
-    res.render('about', { members, title: 'Quiénes somos' })
-  } catch (error) {
-    return next(error)
-  }
+  return res.redirect('https://www.datasketch.co/es/sobre-nosotras/')
+  // try {
+  //   const members = await getMembers()
+  //   res.render('about', { members, title: 'Quiénes somos' })
+  // } catch (error) {
+  //   return next(error)
+  // }
 })
 
 module.exports = router
